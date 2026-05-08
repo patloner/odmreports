@@ -1,0 +1,21 @@
+Device:  THINKPAD09
+Date:    05/08/2026 12:06:21
+==================================================
+
+[ DUA INSTALL PATH ]
+Installed: No — path not found
+
+[ QUEST-RELATED SERVICES ]
+  Name: ODMActiveDirectory
+  Display: On Demand Migration for Active Directory Agent
+  Status: Running
+  Start Type: Automatic
+
+  Name: vmicvss
+  Display: Hyper-V Volume Shadow Copy Requestor
+  Status: Stopped
+  Start Type: Manual
+
+
+[ REGISTRY — QUEST INSTALLED SOFTWARE ]
+  On Demand Migration for Active Directory Agent — v20.12.1709 — Installed: 20260506
