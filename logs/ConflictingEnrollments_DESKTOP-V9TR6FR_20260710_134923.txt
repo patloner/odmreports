@@ -1,0 +1,14 @@
+====================================================
+ Remove-ConflictingEnrollments - 2026-07-10 13:49:23
+ Host: DESKTOP-V9TR6FR
+====================================================
+
+[1/2] Checking HKLM:\SOFTWARE\Microsoft\Enrollments for MAM entries...
+  No MAM enrollments found.
+
+[2/2] Checking WorkplaceJoin\JoinInfo for registered device entries...
+  WorkplaceJoin\JoinInfo key not present - nothing to check.
+
+====================================================
+ Result: No conflicting enrollments found. Join should proceed cleanly.
+====================================================
