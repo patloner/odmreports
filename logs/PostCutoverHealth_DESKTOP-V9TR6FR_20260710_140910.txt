@@ -1,0 +1,61 @@
+====================================================================
+ Get-PostCutoverHealth - 2026-07-10 14:09:10
+ Host: DESKTOP-V9TR6FR
+ Quest ODMAD Post-Cutover Health Check (Domain->Entra)
+ Reference: Quest ODMAD Entra-Joined Devices QSG TOPIC-2311203
+====================================================================
+
+[1/6] Entra Join State
+      (Quest ODMAD QSG TOPIC-2311203: Verify device is Microsoft Entra ID Joined)
+
+  [FAIL] AzureAdJoined                       AzureAdJoined=NO - cutover did not complete the Entra join.
+                                              -> Verify reboot occurred. Check ODM task log for 0x8018000A/0xCAA2000C/0x801c001d. Run Get-CutoverState.ps1 for full diagnostics.
+  [PASS] DomainJoined                        DomainJoined=NO - domain leave complete.
+  [PASS] WMI-DomainMembership                Win32_ComputerSystem.PartOfDomain=False
+
+[2/6] Enrollment State and Residual Artifacts
+
+  [PASS] MmpcEnrollmentFlag                  MmpcEnrollmentFlag absent or 0 - no 0x80190190 blocker.
+  [PASS] MAM-Enrollments                     No residual MAM enrollments found.
+
+[3/6] Domain Leave Residue
+
+  [PASS] GPO-Tattoo-Orphan                   No orphaned GPO tattoo (no GPO history or still domain-managed).
+
+[4/6] Stale Identity Artifacts
+
+  [WARN] Stale-Device-Cert                   Cannot check - DeviceId unknown from dsregcmd (AzureAdJoined may be NO).
+                                              -> Resolve the join state first, then re-check certificates.
+  [PASS] IdentityStore-Cache                 No foreign-domain SIDs in IdentityStore cache (SYSTEM entries are normal and harmless).
+  [PASS] Profile-BakSid                      No .bak SIDs in ProfileList.
+  [PASS] Profile-Orphan                      No orphaned ProfileList entries.
+  [PASS] Autopilot-Cache                     No assigned Autopilot profile cached.
+
+[5/6] BitLocker State
+  [INFO] IntuneManagesBitLocker=true - BitLocker checks suppressed.
+         Intune configuration profile will handle resume, key protectors,
+         and escrow via MDM channel. Verify in Entra portal after first sync.
+  [PASS] BitLocker-Intune                    Intune manages BitLocker for this engagement. Policy will apply on next MDM sync.
+
+[6/6] Network and Clock
+
+  [PASS] Connectivity-Login                  login.microsoftonline.com:443 reachable.
+  [PASS] Clock-Skew                          Clock skew check inconclusive (w32tm output not parseable) - informational.
+
+====================================================================
+ SUMMARY  Host: DESKTOP-V9TR6FR
+ 2026-07-10 14:09:11
+
+  PASS:  12   WARN:   1   FAIL:   1   Total:  14
+
+ OVERALL: ACTION REQUIRED - 1 check(s) need resolution before closing out.
+   FAIL -> AzureAdJoined: AzureAdJoined=NO - cutover did not complete the Entra join.
+           -> Verify reboot occurred. Check ODM task log for 0x8018000A/0xCAA2000C/0x801c001d. Run Get-CutoverState.ps1 for full diagnostics.
+
+ Entra Join State  : AzureAdJoined=NO  DomainJoined=NO
+ Target Tenant     : unknown (unknown)
+ DeviceId (Entra)  : unknown
+
+ Reference: Quest ODMAD Entra-Joined Devices QSG TOPIC-2311203
+ For full diagnostics on failed machines: run Get-CutoverState.ps1 (SinceHours 12)
+====================================================================
